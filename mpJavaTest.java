@@ -1,4 +1,6 @@
 public class mpJavaTest {
+    long mpTime;
+
     String a = "";
     /*
      * Method to get the time
@@ -11,8 +13,10 @@ public class mpJavaTest {
      * Input: size for string, needs to be a big number
      * Basic test to check run time
      */
-    public void basicTest(){
-        a = a + " ";
+    public void basicTest(size){
+        for (int i = 0; i < dataSize; i ++){
+            a = a + " ";  
+        }
     }
 
 
@@ -22,19 +26,16 @@ public class mpJavaTest {
      * Create multiprocessing in java should be very slow
      */
     public void mpHandler(dataSize){
-        for (int i = 0; i < dataSize; i ++){
-            
-        }
+        t = test.getCurrentTime();
+        basicTest(dataSize);
+        mpTime = test.getCurrentTime() - t;
     }
 
 
     public static void main(String[] args) {
-        mpHandler(args[0]);
-        mpJavaTest test = mpJavaTest();
-        t = test.getCurrentTime();
-        //mp handler method
-        int mpTime = test.getCurrentTime() - t;
-        System.out.println(mpTime);
+        mpJavaTest test1 = mpJavaTest();
+        test1.mpHandler(args[0]);
+        System.out.println("Run time for single process: "test1.mpTime);
     }
 
 }

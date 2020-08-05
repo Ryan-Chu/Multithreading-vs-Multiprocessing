@@ -15,6 +15,8 @@ def getCurrenttime():
 
 #Input: Any number, need big numbers
 def processHandler(size):
+    #Need to run process twice to check multiprocessing vs multithreading
+    multiprocessing.Process(target=test, args = size)
     multiprocessing.Process(target=test, args = size)
 
 def MPtest(dataSize):

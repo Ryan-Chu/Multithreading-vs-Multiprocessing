@@ -1,5 +1,5 @@
 import time
-import thread
+import threading
 
 
 
@@ -16,9 +16,11 @@ def getCurrenttime():
 #Only does function with one thread
 def mdHandler(size):
     try:
-        thread.start_new_thread(test, size)
+        #Needs to have 2 threads for multithreading to check multiprocessing
+        threading.start_new_thread(test, size)
+        threading.start_new_thread(test, size)
     except:
-        print "Error: Python thread"
+        print ("Error: Python thread")
 
 def mdTest(dataSize):
     t = getCurrenttime()
