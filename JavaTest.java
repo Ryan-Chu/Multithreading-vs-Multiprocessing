@@ -2,11 +2,22 @@ import java.lang.*;
 import java.io.*;
 import java.io.IOException;
 
-public class JavaTest extends Thread{
+public class JavaTest implements Runnable{
     long mpTime;
     long mdTime;
     String a = "";
+    private Object threadSize;
+    long highestSize;
 
+    public JavaTest(){
+    }
+    /*
+     * Thread constructor for parameter
+     */
+    public JavaTest(Object threadSize){
+        this.threadSize = threadSize;
+    }
+    
     /*
      * Method to get the time
      */
@@ -17,7 +28,7 @@ public class JavaTest extends Thread{
     /*
      * Input: size for string, needs to be a big number
      * Input should be fixed from reading python file function
-     * Create multiprocessing in java should be very slow
+     * Creates two processes to run the basic test
      */
     public void mpHandler(long dataSize){
         long t;
@@ -29,36 +40,47 @@ public class JavaTest extends Thread{
         mpTime = getCurrentTime() - t;
     }
 
-
+    /*
+     * Input: size for string, should be a big number
+     * Input fixed
+     * Runs another thread to do the basic test while running basic test
+     */
     public void mdHandler(long dataSize){
         long t;
-        thread mt = new thread();
-        mt.start();
+        Runnable test2 = new JavaTest(this.highestSize);
+        t = getCurrentTime();
+        new Thread(test2).start();
         String a = "";
-        for (int i = 0; i < args[0]; i ++){
+        for (int i = 0; i < dataSize; i ++){
             a = a + " ";  
         }
-        t = test.getCurrentTime();
+        mdTime = getCurrentTime() - t;
     }
 
-    public static void main(long[] args) {
-        JavaTest test = new JavaTest();
-        test.mpHandler(args[0]);
-        System.out.println("Run time for single process: "+ test.mpTime);
-        
-    }
-
-}
-
-class thread extends Thread{
     @Override
     /*
-     *
+     * This will override the thread so that it will do our basic test.
+     * It should do the basic test at the same time it runs the 
+     * test in the method allowing it to go faster.
      */
     public void run(){
         String a = "";
-        for (int i = 0; i < args[0]; i ++){
+        for (int i = 0; i < highestSize; i ++){
             a = a + " ";  
         }
     }
+
+    /*
+     * Input: Should be fixed from Python file
+     * This runs the multiprocess 
+     */
+    public static void main(long[] args) {
+        JavaTest test = new JavaTest();
+        test.highestSize = args[0];
+        test.mpHandler(args[0]);
+        System.out.println("Run time for basic test for two process: "+ test.mpTime);
+        test.mdHandler(args[0]);
+        System.out.println("Run time for basic test with one extra thread"+ test.mdTime);
+    }
+
 }
