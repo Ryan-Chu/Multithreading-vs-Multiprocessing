@@ -8,6 +8,7 @@ def mptest(number):
     a = ""
     for n in range(number):
         a = a + " "
+        n = n+1
 
 #Checks time
 def getCurrenttime():
@@ -16,8 +17,8 @@ def getCurrenttime():
 #Input: Any number, need big numbers
 def processHandler(size):
     #Need to run process twice to check multiprocessing vs multithreading
-    multiprocessing.Process(target=mptest, args = size)
-    multiprocessing.Process(target=mptest, args = size)
+    multiprocessing.Process(target=mptest, args = (size,))
+    multiprocessing.Process(target=mptest, args = (size,))
 
 def MPtest(dataSize):
     t = getCurrenttime()

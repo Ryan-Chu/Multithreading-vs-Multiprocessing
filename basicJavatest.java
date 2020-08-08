@@ -4,5 +4,6 @@ public class basicJavatest{
         for (int i = 0; i < args[0]; i ++){
             a = a + " ";  
         }
+        System.out.println("Gets past counters");
     }
 }
