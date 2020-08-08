@@ -78,9 +78,9 @@ public class JavaTest implements Runnable{
         JavaTest test = new JavaTest();
         test.highestSize = args[0];
         test.mpHandler(args[0]);
-        System.out.println("Run time for basic test for two process: "+ test.mpTime);
+        System.out.println("This is the speed for multiprocessing in Java: "+ test.mpTime);
         test.mdHandler(args[0]);
-        System.out.println("Run time for basic test with one extra thread"+ test.mdTime);
+        System.out.println("This is the speed for multithreading in Java"+ test.mdTime);
     }
 
 }

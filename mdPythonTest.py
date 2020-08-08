@@ -3,7 +3,7 @@ import threading
 
 
 
-def test(number):
+def mdtest(number):
     a = ""
     for n in range(number):
         a = a + " "
@@ -17,8 +17,8 @@ def getCurrenttime():
 def mdHandler(size):
     try:
         #Needs to have 2 threads for multithreading to check multiprocessing
-        threading.start_new_thread(test, size)
-        threading.start_new_thread(test, size)
+        threading.start_new_thread(mdtest, size)
+        threading.start_new_thread(mdtest, size)
     except:
         print ("Error: Python thread")
 
