@@ -9,5 +9,6 @@ Problems:
 3. Very complicated to run a singular method from processbuilder for multiprocessing, as it is generally used to invoke os arguments not singular things. Forces us to move basic test to it's own class so we can just call that entire class.
 4. Run does not pass in any parameters so need to switch to runnable interface.
 5. Changed project to not include C++ due difficulties in multiprocessing within C++.
+6. Speeds for Java multiprocessing may not be accurate as they are not tested. Tried to put a Future/Promise by adding a lock but couldn't get it to work.
 Change: 
 1. Realized the multithreading and multiprocessing in Python was only using one of each. Same thing is currently being done for Java and C++. Need to implement to 2 processes and 2 threads.
