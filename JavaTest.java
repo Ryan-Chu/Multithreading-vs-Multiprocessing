@@ -52,9 +52,9 @@ public class JavaTest implements Runnable{
         Thread thread1 = new Thread(test2);
         Runnable test3 = new JavaTest(this.highestSize);
         Thread thread2 = new Thread(test3);
+        thread1.start();
+        thread2.start();
         try{
-            thread1.start();
-            thread2.start();
             thread1.join();
             thread2.join();
         }

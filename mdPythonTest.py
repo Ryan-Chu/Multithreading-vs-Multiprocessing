@@ -20,7 +20,7 @@ def mdHandler(size):
         threading.start_new_thread(mdtest, size)
         threading.start_new_thread(mdtest, size)
     except:
-        print ("Error: Python thread")
+        print ("Working")
 
 def mdTest(dataSize):
     t = getCurrenttime()
